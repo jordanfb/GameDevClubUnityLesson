@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerControl : MonoBehaviour {
+public class PlayerControl : MonoBehaviour
+{
     [SerializeField]
     private float maxSpeed = 2f;
     [SerializeField]
@@ -25,16 +26,18 @@ public class PlayerControl : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
     private float timeHoldingReset = 0;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         LevelManager.instance.SetLevelSpawn(transform.position, transform.rotation);
         LevelManager.instance.SetPlayerGameobject(this.gameObject);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         bool onGround = false;
         LayerMask onFloorMask = LayerMask.GetMask("Terrain", "Coin", "Block");
         if (Physics2D.Raycast(transform.position, -1 * transform.up, .1f, onFloorMask) || Physics2D.Raycast(transform.position + transform.right * -.4f, -1 * transform.up, .1f, onFloorMask) || Physics2D.Raycast(transform.position + transform.right * .4f, -1 * transform.up, .1f, onFloorMask))
@@ -50,7 +53,8 @@ public class PlayerControl : MonoBehaviour {
                 // if you're slower than the max speed or working against your current speed then you can apply force in that direction
                 rb.AddForce(dx * transform.right * Time.deltaTime * acceleration);
             }
-        } else
+        }
+        else
         {
             if (Mathf.Abs(rb.angularVelocity) < maxRotationSpeed || ((dx > 0) == (rb.angularVelocity > 0)))
             {
@@ -72,11 +76,12 @@ public class PlayerControl : MonoBehaviour {
         {
             spriteRenderer.sprite = regularSprite;
         }
-        
+
         if (dx > 0)
         {
             transform.localScale = Vector3.one;
-        } else if (dx < 0)
+        }
+        else if (dx < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
@@ -104,5 +109,5 @@ public class PlayerControl : MonoBehaviour {
         {
             LevelManager.instance.NextLevel();
         }
-	}
+    }
 }
