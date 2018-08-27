@@ -27,6 +27,9 @@ public class FloorButton : MonoBehaviour {
     [SerializeField]
     private float launchForce = 500f;
 
+    private int coinLayer; // these are for collision checking
+    private int playerLayer;
+    private int blockLayer;
     private Collider2D buttonCollider;
     private SpriteRenderer spriteRenderer;
     private int collidingObjects = 0;
@@ -42,6 +45,10 @@ public class FloorButton : MonoBehaviour {
     void Start () {
         buttonCollider = GetComponent<PolygonCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        coinLayer = LayerMask.NameToLayer("Coin");
+        playerLayer = LayerMask.NameToLayer("Player");
+        blockLayer = LayerMask.NameToLayer("Block");
     }
 
     private void UponPress()
@@ -76,15 +83,15 @@ public class FloorButton : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (pressedByCoin && collision.gameObject.layer == LayerMask.NameToLayer("Coin"))
+        if (pressedByCoin && collision.gameObject.layer == coinLayer)
         {
             collidingObjects++;
         }
-        if (pressedByPlayer && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (pressedByPlayer && collision.gameObject.layer == playerLayer)
         {
             collidingObjects++;
         }
-        if (pressedByBlock && collision.gameObject.layer == LayerMask.NameToLayer("Block"))
+        if (pressedByBlock && collision.gameObject.layer == blockLayer)
         {
             collidingObjects++;
         }
@@ -104,15 +111,15 @@ public class FloorButton : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (pressedByCoin && collision.gameObject.layer == LayerMask.NameToLayer("Coin"))
+        if (pressedByCoin && collision.gameObject.layer == coinLayer)
         {
             collidingObjects--;
         }
-        if (pressedByPlayer && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (pressedByPlayer && collision.gameObject.layer == playerLayer)
         {
             collidingObjects--;
         }
-        if (pressedByBlock && collision.gameObject.layer == LayerMask.NameToLayer("Block"))
+        if (pressedByBlock && collision.gameObject.layer == blockLayer)
         {
             collidingObjects--;
         }
