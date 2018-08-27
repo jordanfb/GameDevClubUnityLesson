@@ -83,11 +83,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51f69f379702cc49b8fe8838578c306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorsOpenWhenPressed: []
+  doorsClosedWhenPressed: []
+  doorsToggleWhenPressed: []
   regularSprite: {fileID: 21300000, guid: 75bdcb71f9a82ec438ffd893056fe233, type: 3}
   pressedSprite: {fileID: 21300008, guid: 75bdcb71f9a82ec438ffd893056fe233, type: 3}
   pressedByPlayer: 1
   pressedByCoin: 1
   pressedByBlock: 1
+  launchCollider: 0
+  launchForce: 500
 --- !u!212 &212526659141820584
 SpriteRenderer:
   m_ObjectHideFlags: 1
