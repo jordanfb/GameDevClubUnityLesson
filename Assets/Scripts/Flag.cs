@@ -27,7 +27,7 @@ public class Flag : MonoBehaviour {
                 LevelManager.instance.PrevLevel();
                 break;
             case ActionType.Checkpoint:
-                LevelManager.instance.SetCheckpoint(transform);
+                LevelManager.instance.SetCheckpoint(transform.position, transform.rotation);
                 break;
         }
     }

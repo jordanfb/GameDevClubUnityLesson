@@ -13,8 +13,13 @@ public class LevelManager : MonoBehaviour {
     private string prevSceneName;
 
     public static LevelManager instance;
-    private Transform checkpointTransform;
-    private Transform levelSpawn;
+
+    private Vector3 checkpointPosition;
+    private Quaternion checkpointRotation;
+    private Vector3 levelSpawn;
+    private Quaternion levelSpawnRotation;
+    private GameObject playerGameObject;
+
 
     public void Awake()
     {
@@ -32,6 +37,13 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(sceneName);
     }
 
+    public void BackToCheckpoint()
+    {
+        playerGameObject.transform.position = checkpointPosition;
+        playerGameObject.transform.rotation = checkpointRotation;
+        playerGameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    }
+
     public void NextLevel()
     {
         SceneManager.LoadScene(nextSceneName);
@@ -42,13 +54,21 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(prevSceneName);
     }
 
-    public void SetCheckpoint(Transform pos)
+    public void SetCheckpoint(Vector3 pos, Quaternion rot)
     {
-        checkpointTransform = pos;
+        checkpointPosition = pos;
+        checkpointRotation = rot;
     }
 
-    public void SetLevelSpawn(Transform pos)
+    public void SetLevelSpawn(Vector3 pos, Quaternion rot)
     {
         levelSpawn = pos;
+        levelSpawnRotation = rot;
+        SetCheckpoint(pos, rot);
+    }
+
+    public void SetPlayerGameobject(GameObject player)
+    {
+        playerGameObject = player;
     }
 }

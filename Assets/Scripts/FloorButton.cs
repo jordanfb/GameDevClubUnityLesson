@@ -22,6 +22,10 @@ public class FloorButton : MonoBehaviour {
     private bool pressedByCoin;
     [SerializeField]
     private bool pressedByBlock;
+    [SerializeField]
+    private bool launchCollider; // if the collider has a gameobject with a rigidbody this launches it vertically upwards
+    [SerializeField]
+    private float launchForce = 500f;
 
     private Collider2D buttonCollider;
     private SpriteRenderer spriteRenderer;
@@ -80,7 +84,7 @@ public class FloorButton : MonoBehaviour {
         {
             collidingObjects++;
         }
-        if (pressedByCoin && collision.gameObject.layer == LayerMask.NameToLayer("Block"))
+        if (pressedByBlock && collision.gameObject.layer == LayerMask.NameToLayer("Block"))
         {
             collidingObjects++;
         }
@@ -88,6 +92,13 @@ public class FloorButton : MonoBehaviour {
         {
             spriteRenderer.sprite = pressedSprite;
             UponPress();
+            if (launchCollider)
+            {
+                if (collision.attachedRigidbody)
+                {
+                    collision.attachedRigidbody.AddForce(transform.up * launchForce);
+                }
+            }
         }
     }
 
@@ -101,7 +112,7 @@ public class FloorButton : MonoBehaviour {
         {
             collidingObjects--;
         }
-        if (pressedByCoin && collision.gameObject.layer == LayerMask.NameToLayer("Block"))
+        if (pressedByBlock && collision.gameObject.layer == LayerMask.NameToLayer("Block"))
         {
             collidingObjects--;
         }
