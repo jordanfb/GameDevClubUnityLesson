@@ -52,6 +52,8 @@ Start by showing what Unity is:
 	- raycast from the transform to like .6f downwards from the transform's POV.
 	- if it hits, then we know we're on the ground and we can jump
 
+- For future note, I got to about here in about 2.5 hours, without doing anything involving changing sprites or scaling, and taking about 10-15 minutes to get the stragglers set up with the art and prefabs (which I distributed in a zip via flash drive)
+
 - now that we have movement pretty much figured out, and they're able to place tiles, we probably want the flag to swap levels next, because then we can create as many levels as we want.
 - but we're not done yet!
 - next up is buttons
