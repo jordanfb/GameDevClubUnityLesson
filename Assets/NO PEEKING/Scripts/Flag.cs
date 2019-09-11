@@ -6,7 +6,7 @@ public class Flag : MonoBehaviour {
     [SerializeField]
     private ActionType flagAction;
 
-    private Collider2D flagCollider;
+    private Collider2D flagCollider = null;
 
     // Use this for initialization
     void Start () {
