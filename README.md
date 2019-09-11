@@ -19,6 +19,8 @@ Start by showing what Unity is:
 		- look it's a thing!
 	- add a Rigidbody2D
 		- hit play! Magic! Yay!
+	- add a CircleCollider2D
+		- otherwise your next step will be kinda useless
 - Create a sprite with a box collider in the way of the fall of the other gameobject
 	- oh man interaction!
 - now turn those things into prefabs!
